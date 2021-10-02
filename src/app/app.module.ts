@@ -1,26 +1,30 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { AuthorsComponent } from './authors/authors.component';
-import { AdvertisementsComponent } from './advertisements/advertisements.component';
+import {AppComponent} from './app.component';
+import {AuthorsComponent} from './authors/authors.component';
+import {AdvertisementsComponent} from './advertisements/advertisements.component';
 import {HttpClientModule} from "@angular/common/http";
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {HomeComponent} from './home/home.component';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {AppRoutingModule} from "./app-routing/app-routing.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthorsComponent,
     AdvertisementsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent],
   exports: []
 })
-export class AppModule { }
+export class AppModule {
+}
