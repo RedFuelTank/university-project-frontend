@@ -1,6 +1,6 @@
 export interface Advertisement {
+  id: number;
   title: string;
   description: string;
-  id: number;
   authorId: number;
 }

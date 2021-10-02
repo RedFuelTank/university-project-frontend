@@ -1,1 +1,5 @@
-<p>advertisements works!</p>
+<ul *ngIf="advertisements">
+  <li *ngFor="let todo of advertisements; let i = index">
+      <p>{{todo.title}}</p>
+  </li>
+</ul>

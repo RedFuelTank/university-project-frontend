@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthorsService} from "../shared/authors.service";
 
 @Component({
   selector: 'app-authors',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthorsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: AuthorsService) {
+  }
 
   ngOnInit(): void {
   }
