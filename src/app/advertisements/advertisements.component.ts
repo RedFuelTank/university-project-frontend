@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./advertisements.component.css']
 })
 export class AdvertisementsComponent implements OnInit {
-  public advertisements: Advertisement[] = [{authorId: 0, title: "something", id: 123, description: "afodaisjdkasod"}, {authorId: 0, title: "something", id: 123, description: "afodaisjdkasod"}, {authorId: 0, title: "something", id: 123, description: "afodaisjdkasod"}];
+  public advertisements: Advertisement[] = [];
 
   constructor(private service: AdvertisementsService, private activatedRoute: ActivatedRoute) {
   }

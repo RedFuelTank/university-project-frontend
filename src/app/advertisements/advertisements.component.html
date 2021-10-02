@@ -1,5 +1,10 @@
-<ul *ngIf="advertisements">
-  <li *ngFor="let todo of advertisements; let i = index">
-      <p>{{todo.title}}</p>
-  </li>
-</ul>
+<ngb-accordion *ngIf="advertisements" [closeOthers]="true">
+  <ngb-panel *ngFor="let advertisement of advertisements; let i = index" id="static-{{i}}" title="{{advertisement.title}}">
+    <ng-template ngbPanelContent>
+      <p>{{advertisement.description}}</p>
+      <p>Author name: {{advertisement.name}}</p>
+      <p>Author phone number: {{advertisement.authorPhoneNumber}}</p>
+      <p>Author email: {{advertisement.authorEmail}}</p>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>

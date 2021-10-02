@@ -7,7 +7,7 @@ import {map} from "rxjs/operators";
   providedIn: 'root'
 })
 export class AdvertisementsService {
-  private static REST_API_SERVER = "http://localhost:8080/api";
+  private static REST_API_SERVER = "http://localhost:4200/api";
 
   constructor(private http: HttpClient) { }
 

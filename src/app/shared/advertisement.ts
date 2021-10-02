@@ -3,4 +3,8 @@ export interface Advertisement {
   title: string;
   description: string;
   authorId: number;
+  authorUsername: string;
+  authorEmail: string;
+  authorPhoneNumber: string;
+  name: string;
 }
