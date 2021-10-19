@@ -1,12 +1,19 @@
+<div class="row-cols-auto top-buffer-20 text-center">
+  <button type="button" class="btn grad text-dark" (click)="goToAdvertisementFormPage()">Make advertisement</button>
+</div>
 
-
-<ngb-accordion *ngIf="advertisements" [closeOthers]="true">
-  <ngb-panel *ngFor="let advertisement of advertisements; let i = index" id="static-{{i}}" title="{{advertisement.title}}">
-    <ng-template ngbPanelContent>
-      <p>{{advertisement.description}}</p>
-      <p>Author name : {{advertisement.name}}</p>
-      <p>Author phone number : {{advertisement.authorPhoneNumber}}</p>
-      <p>Author email : {{advertisement.authorEmail}}</p>
-    </ng-template>
-  </ngb-panel>
-</ngb-accordion>
+<div class="row-cols-auto top-buffer-20">
+  <div class="col-8">
+    <ngb-accordion *ngIf="advertisements" [closeOthers]="true">
+      <ngb-panel *ngFor="let advertisement of advertisements; let i = index" id="static-{{i}}"
+                 title="{{advertisement.title}}">
+        <ng-template ngbPanelContent>
+          <p>{{advertisement.description}}</p>
+          <p>Author name : {{advertisement.name}}</p>
+          <p>Author phone number : {{advertisement.authorPhoneNumber}}</p>
+          <p>Author email : {{advertisement.authorEmail}}</p>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Advertisement} from "../shared/advertisement";
 import {AdvertisementsService} from "../shared/advertisements.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-advertisements',
@@ -11,7 +11,11 @@ import {ActivatedRoute} from "@angular/router";
 export class AdvertisementsComponent implements OnInit {
   public advertisements: Advertisement[] = [];
 
-  constructor(private service: AdvertisementsService, private activatedRoute: ActivatedRoute) {
+  constructor(private service: AdvertisementsService, private activatedRoute: ActivatedRoute, private route: Router) {
+  }
+
+  goToAdvertisementFormPage(){
+    this.route.navigate(['/advertisement-form']);
   }
 
   ngOnInit(): void {

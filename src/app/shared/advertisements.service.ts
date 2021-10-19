@@ -18,4 +18,12 @@ export class AdvertisementsService {
   public getRequests() {
     return this.http.get<Advertisement[]>(AdvertisementsService.REST_API_SERVER + '/requests');
   }
+
+  public postOffer(advertisement: Advertisement) {
+    this.http.post<any>(AdvertisementsService.REST_API_SERVER + '/offers', advertisement).subscribe();
+  }
+
+  public postRequest(advertisement: Advertisement) {
+    this.http.post<any>(AdvertisementsService.REST_API_SERVER + '/requests', advertisement).subscribe();
+  }
 }
