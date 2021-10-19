@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AdvertisementsService} from "../shared/advertisements.service";
 import {Advertisement} from "../shared/advertisement";
 import {Router} from "@angular/router";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-advertisement-form',
@@ -21,14 +22,21 @@ export class AdvertisementFormComponent implements OnInit {
   }
   isOffer: number = 0;
 
-  constructor(private service: AdvertisementsService, private route: Router) {
+  myForm: FormGroup = new FormGroup({
+    "title": new FormControl(this.advertisement.title, [Validators.required]),
+    "description": new FormControl(this.advertisement.description, [Validators.required]),
+    "recaptcha": new FormControl(null, Validators.required)
+  });
 
+  constructor(private service: AdvertisementsService, private route: Router) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   public submit() {
+    this.advertisement.title = this.myForm.get("title")?.value;
+    this.advertisement.description= this.myForm.get("description")?.value;
     if (this.isOffer === 1) {
       this.service.postOffer(this.advertisement);
     } else if (this.isOffer === -1) {
@@ -38,4 +46,7 @@ export class AdvertisementFormComponent implements OnInit {
     this.route.navigate(["/home"]);
   }
 
+  public resolved(captchaResponse: string): void {
+    console.log(`Resolved captcha with response: ${captchaResponse}`);
+  }
 }

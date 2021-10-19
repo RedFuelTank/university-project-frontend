@@ -8,8 +8,16 @@ import {HttpClientModule} from "@angular/common/http";
 import {HomeComponent} from './home/home.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {AppRoutingModule} from "./app-routing/app-routing.module";
-import { AdvertisementFormComponent } from './advertisement-form/advertisement-form.component';
-import {FormsModule} from "@angular/forms";
+import {AdvertisementFormComponent} from './advertisement-form/advertisement-form.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {
+  RECAPTCHA_LANGUAGE,
+  RECAPTCHA_SETTINGS,
+  RecaptchaFormsModule,
+  RecaptchaModule,
+  RecaptchaSettings,
+} from "ng-recaptcha";
+
 
 @NgModule({
   declarations: [
@@ -19,14 +27,26 @@ import {FormsModule} from "@angular/forms";
     HomeComponent,
     AdvertisementFormComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NgbModule,
-        HttpClientModule,
-        FormsModule,
-    ],
-  providers: [HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    HttpClientModule,
+    FormsModule,
+    RecaptchaFormsModule,
+    RecaptchaModule,
+    ReactiveFormsModule,
+  ],
+  providers: [HttpClientModule,
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {siteKey: "6LeeAt8cAAAAAGJaiDt_B6dGxBan-smnQBSzmXm0"} as RecaptchaSettings,
+    },
+    {
+      provide: RECAPTCHA_LANGUAGE,
+      useValue: "en", // use French language
+    },
+  ],
   bootstrap: [AppComponent],
   exports: []
 })
