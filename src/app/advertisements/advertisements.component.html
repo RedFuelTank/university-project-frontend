@@ -1,3 +1,5 @@
+
+
 <ngb-accordion *ngIf="advertisements" [closeOthers]="true">
   <ngb-panel *ngFor="let advertisement of advertisements; let i = index" id="static-{{i}}" title="{{advertisement.title}}">
     <ng-template ngbPanelContent>

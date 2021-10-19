@@ -16,7 +16,7 @@ export class AdvertisementsComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.url.subscribe((url) => {
-      if (url.join("").endsWith("requests")) {
+      if (url.join("").toString().endsWith("requests")) {
         this.loadRequests();
       } else {
         this.loadOffers();
