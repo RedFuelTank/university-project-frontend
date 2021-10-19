@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AdvertisementsService} from "../shared/advertisements.service";
 import {Advertisement} from "../shared/advertisement";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-advertisement-form',
@@ -20,7 +21,7 @@ export class AdvertisementFormComponent implements OnInit {
   }
   isOffer: number = 0;
 
-  constructor(private service: AdvertisementsService) {
+  constructor(private service: AdvertisementsService, private route: Router) {
 
   }
 
@@ -34,6 +35,7 @@ export class AdvertisementFormComponent implements OnInit {
       this.service.postRequest(this.advertisement);
     }
     console.log(this.advertisement);
+    this.route.navigate(["/home"]);
   }
 
 }

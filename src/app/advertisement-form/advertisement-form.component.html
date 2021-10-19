@@ -1,12 +1,17 @@
 <form class="top-buffer-20">
   <div class="form-group">
     <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" [(ngModel)]="advertisement.title" name="title" placeholder="Enter title">
-    <small id="title-help" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <input type="text" class="form-control" id="title" [(ngModel)]="advertisement.title" name="title" #title="ngModel" placeholder="Enter title">
+    <div [hidden]="title.untouched || advertisement.title" class="alert alert-danger">
+      May not be empty
+    </div>
   </div>
   <div class="form-group">
     <label for="description">Description</label>
-    <input type="text" class="form-control" id="description" [(ngModel)]="advertisement.description" name="description" placeholder="Enter description">
+    <input type="text" class="form-control" id="description" [(ngModel)]="advertisement.description" name="description" #description="ngModel" placeholder="Enter description">
+    <div [hidden]="description.untouched || advertisement.description" class="alert alert-danger">
+      May not be empty
+    </div>
   </div>
   <div class="btn-group top-buffer-10" role="group" aria-label="Basic radio toggle button group">
     <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" (click)="isOffer = -1">
@@ -16,5 +21,5 @@
     <label class="btn btn-outline-primary" for="btnradio2">Offer</label>
   </div>
   <br>
-  <button type="submit" class="btn btn-primary top-buffer-10" (click)="submit()">Submit</button>
+  <button [disabled]="!advertisement.title || !advertisement.description || isOffer === 0" type="submit" class="btn btn-primary top-buffer-10" (click)="submit()">Submit</button>
 </form>
