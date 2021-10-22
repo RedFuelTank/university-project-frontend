@@ -20,7 +20,10 @@ export class AdvertisementFormComponent implements OnInit {
     authorUsername: "",
     authorEmail: "",
     authorPhoneNumber: "",
-    name: ""
+    name: "",
+    lat: 0,
+    lng: 0,
+    address: "",
   }
   isOffer: number = 0;
 
@@ -88,13 +91,16 @@ export class AdvertisementFormComponent implements OnInit {
       } else {
         window.alert('Geocoder failed due to: ' + status);
       }
-
     });
   }
 
   public submit() {
     this.advertisement.title = this.myForm.get("title")?.value;
     this.advertisement.description = this.myForm.get("description")?.value;
+    this.advertisement.lat = this.lat;
+    this.advertisement.lng = this.lng;
+    this.advertisement.address = this.searchElementRef?.nativeElement;
+
     if (this.isOffer === 1) {
       this.service.postOffer(this.advertisement);
     } else if (this.isOffer === -1) {

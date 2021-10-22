@@ -7,4 +7,8 @@ export interface Advertisement {
   authorEmail: string;
   authorPhoneNumber: string;
   name: string;
+
+  lat: number;
+  lng: number;
+  address: string;
 }
