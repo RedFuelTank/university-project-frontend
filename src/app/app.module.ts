@@ -37,7 +37,8 @@ import {AgmCoreModule} from "@agm/core";
     RecaptchaFormsModule,
     RecaptchaModule,
     ReactiveFormsModule,
-    AgmCoreModule.forRoot({apiKey: 'AIzaSyCApVAYSR28jFwfvm9jPH98dJgxWtDqH-A'})
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyCJtKAucaMs0SbITAtyLHMM5m2XJ7cwIRY',
+      language: localStorage && localStorage.gml || 'en'})
   ],
   providers: [HttpClientModule,
     {
@@ -46,7 +47,7 @@ import {AgmCoreModule} from "@agm/core";
     },
     {
       provide: RECAPTCHA_LANGUAGE,
-      useValue: "en", // use French language
+      useValue: "en",
     },
   ],
   bootstrap: [AppComponent],

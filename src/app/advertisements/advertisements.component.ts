@@ -10,6 +10,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class AdvertisementsComponent implements OnInit {
   public advertisements: Advertisement[] = [];
+  lat = 51.678418;
+  lng = 7.809007;
 
   constructor(private service: AdvertisementsService, private activatedRoute: ActivatedRoute, private route: Router) {
   }

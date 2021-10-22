@@ -12,6 +12,9 @@
           <p>Author name : {{advertisement.name}}</p>
           <p>Author phone number : {{advertisement.authorPhoneNumber}}</p>
           <p>Author email : {{advertisement.authorEmail}}</p>
+          <agm-map [latitude]="lat" [longitude]="lng">
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          </agm-map>
         </ng-template>
       </ngb-panel>
     </ngb-accordion>

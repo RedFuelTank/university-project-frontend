@@ -24,6 +24,9 @@
         <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" (click)="isOffer = 1">
         <label class="btn btn-outline-primary" for="btnradio2">Offer</label>
       </div>
+      <agm-map class="top-buffer-10" [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng" [markerClickable]="true" [markerDraggable]="true"></agm-marker>
+      </agm-map>
       <re-captcha class="top-buffer-10" formControlName="recaptcha"></re-captcha>
       <br>
       <button [disabled]="myForm.invalid || isOffer === 0" type="submit"

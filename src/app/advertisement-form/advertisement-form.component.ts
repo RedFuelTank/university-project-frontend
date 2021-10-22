@@ -21,6 +21,8 @@ export class AdvertisementFormComponent implements OnInit {
     name: ""
   }
   isOffer: number = 0;
+  lat = 59.3989877;
+  lng = 23.905469;
 
   myForm: FormGroup = new FormGroup({
     "title": new FormControl(this.advertisement.title, [Validators.required]),
@@ -32,7 +34,14 @@ export class AdvertisementFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
+      }, (err) => console.log(err), {enableHighAccuracy: true})
+    }
   }
+
 
   public submit() {
     this.advertisement.title = this.myForm.get("title")?.value;
