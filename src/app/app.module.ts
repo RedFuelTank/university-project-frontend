@@ -17,6 +17,7 @@ import {
   RecaptchaModule,
   RecaptchaSettings,
 } from "ng-recaptcha";
+import {AgmCoreModule} from "@agm/core";
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import {
     RecaptchaFormsModule,
     RecaptchaModule,
     ReactiveFormsModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyCApVAYSR28jFwfvm9jPH98dJgxWtDqH-A'})
   ],
   providers: [HttpClientModule,
     {
