@@ -24,6 +24,8 @@ export class AdvertisementFormComponent implements OnInit {
     lat: 0,
     lng: 0,
     address: "",
+    startDate: "",
+    expirationDate: "",
   }
   isOffer: number = 0;
 
