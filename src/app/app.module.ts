@@ -38,7 +38,7 @@ import {AgmCoreModule} from "@agm/core";
     RecaptchaModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyCJtKAucaMs0SbITAtyLHMM5m2XJ7cwIRY',
-      language: localStorage && localStorage.gml || 'en'})
+      language: localStorage && localStorage.gml || 'en', libraries: ['places']},)
   ],
   providers: [HttpClientModule,
     {

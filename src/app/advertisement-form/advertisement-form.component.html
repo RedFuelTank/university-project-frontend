@@ -24,8 +24,12 @@
         <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" (click)="isOffer = 1">
         <label class="btn btn-outline-primary" for="btnradio2">Offer</label>
       </div>
-      <agm-map class="top-buffer-10" [latitude]="lat" [longitude]="lng">
-        <agm-marker [latitude]="lat" [longitude]="lng" [markerClickable]="true" [markerDraggable]="true"></agm-marker>
+      <div class="form-group top-buffer-10">
+        <label for="address">Enter address</label>
+        <input type="text" class="form-control" id="address" (keydown.enter)="$event.preventDefault()" placeholder="Search location" autocorrect="off" autocapitalize="off" spellcheck="off" #search>
+      </div>
+      <agm-map class="top-buffer-10" [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+        <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
       </agm-map>
       <re-captcha class="top-buffer-10" formControlName="recaptcha"></re-captcha>
       <br>

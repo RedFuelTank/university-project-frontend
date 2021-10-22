@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import {AdvertisementsService} from "../shared/advertisements.service";
 import {Advertisement} from "../shared/advertisement";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {MapsAPILoader} from "@agm/core";
+import Geocoder = google.maps.Geocoder;
 
 @Component({
   selector: 'app-advertisement-form',
@@ -21,8 +23,15 @@ export class AdvertisementFormComponent implements OnInit {
     name: ""
   }
   isOffer: number = 0;
-  lat = 59.3989877;
-  lng = 23.905469;
+
+  lat = 59.3971249;
+  lng = 24.664837;
+  address: string = "";
+  zoom = 12;
+  private geoCoder: Geocoder | undefined;
+
+  @ViewChild('search')
+  public searchElementRef: ElementRef | undefined;
 
   myForm: FormGroup = new FormGroup({
     "title": new FormControl(this.advertisement.title, [Validators.required]),
@@ -30,10 +39,34 @@ export class AdvertisementFormComponent implements OnInit {
     "recaptcha": new FormControl(null, Validators.required)
   });
 
-  constructor(private service: AdvertisementsService, private route: Router) {
+  constructor(private service: AdvertisementsService, private route: Router, private mapsAPILoader: MapsAPILoader,
+              private ngZone: NgZone) {
   }
 
   ngOnInit() {
+    this.mapsAPILoader.load().then(() => {
+      this.setCurrentPosition();
+      this.geoCoder = new google.maps.Geocoder;
+
+      // @ts-ignore
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          this.lat = place.geometry.location.lat();
+          this.lng = place.geometry.location.lng();
+          this.zoom = 12;
+        });
+      });
+    });
+  }
+
+  private setCurrentPosition() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.lat = position.coords.latitude;
@@ -42,10 +75,26 @@ export class AdvertisementFormComponent implements OnInit {
     }
   }
 
+  private setCurrentAddress(lat: number, lng: number) {
+    // @ts-ignore
+    this.geoCoder.geocode({ 'location': { lat: lat, lng: lng} }, (results, status) => {
+      if (status === 'OK') {
+        if (results[0]) {
+          this.zoom = 12;
+          this.address = results[0].formatted_address;
+        } else {
+          window.alert('No results found');
+        }
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
+      }
+
+    });
+  }
 
   public submit() {
     this.advertisement.title = this.myForm.get("title")?.value;
-    this.advertisement.description= this.myForm.get("description")?.value;
+    this.advertisement.description = this.myForm.get("description")?.value;
     if (this.isOffer === 1) {
       this.service.postOffer(this.advertisement);
     } else if (this.isOffer === -1) {
@@ -55,7 +104,11 @@ export class AdvertisementFormComponent implements OnInit {
     this.route.navigate(["/home"]);
   }
 
-  public resolved(captchaResponse: string): void {
-    console.log(`Resolved captcha with response: ${captchaResponse}`);
+  markerDragEnd($event: any) {
+    console.log($event.coords);
+    this.lat = $event.coords.lat;
+    this.lng = $event.coords.lng;
+    this.setCurrentAddress(this.lat, this.lng);
+    console.log(this.address)
   }
 }
