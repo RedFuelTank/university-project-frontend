@@ -4,7 +4,7 @@ import {Advertisement} from "../shared/advertisement";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MapsAPILoader} from "@agm/core";
-import Geocoder = google.maps.Geocoder;
+import {NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-advertisement-form',
@@ -21,18 +21,16 @@ export class AdvertisementFormComponent implements OnInit {
     authorEmail: "",
     authorPhoneNumber: "",
     name: "",
-    lat: 0,
-    lng: 0,
+    lat: 59.3971249,
+    lng: 24.664837,
     address: "",
     startDate: "",
     expirationDate: "",
   }
   isOffer: number = 0;
 
-  lat = 59.3971249;
-  lng = 24.664837;
-  address: string = "";
   zoom = 12;
+  datepicker: NgbDateStruct = {day: 0, month: 0, year: 0};
 
   @ViewChild('search')
   public searchElementRef: ElementRef | undefined;
@@ -61,10 +59,10 @@ export class AdvertisementFormComponent implements OnInit {
             return;
           }
           if (place.formatted_address != null) {
-            this.address = place.formatted_address;
+            this.advertisement.address = place.formatted_address;
           }
-          this.lat = place.geometry.location.lat();
-          this.lng = place.geometry.location.lng();
+          this.advertisement.lat = place.geometry.location.lat();
+          this.advertisement.lng = place.geometry.location.lng();
           this.zoom = 12;
         });
       });
@@ -74,8 +72,8 @@ export class AdvertisementFormComponent implements OnInit {
   private setCurrentPosition() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
+        this.advertisement.lat = position.coords.latitude;
+        this.advertisement.lng = position.coords.longitude;
       }, (err) => console.log(err), {enableHighAccuracy: true})
     }
   }
@@ -83,9 +81,7 @@ export class AdvertisementFormComponent implements OnInit {
   public submit() {
     this.advertisement.title = this.myForm.get("title")?.value;
     this.advertisement.description = this.myForm.get("description")?.value;
-    this.advertisement.lat = this.lat;
-    this.advertisement.lng = this.lng;
-    this.advertisement.address = this.address;
+    this.advertisement.expirationDate = this.datepicker.day + "-" + this.datepicker.month + "-" + this.datepicker.year;
 
     if (this.isOffer === 1) {
       this.service.postOffer(this.advertisement);
@@ -93,11 +89,11 @@ export class AdvertisementFormComponent implements OnInit {
       this.service.postRequest(this.advertisement);
     }
     console.log(this.advertisement);
-    this.route.navigate(["/home"]);
+    this.route.navigate(["/home"]).then();
   }
 
   markerDragEnd($event: any) {
-    this.lat = $event.coords.lat;
-    this.lng = $event.coords.lng;
+    this.advertisement.lat = $event.coords.lat;
+    this.advertisement.lng = $event.coords.lng;
   }
 }
