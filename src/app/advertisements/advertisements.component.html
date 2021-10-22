@@ -12,8 +12,9 @@
           <p>Author name : {{advertisement.name}}</p>
           <p>Author phone number : {{advertisement.authorPhoneNumber}}</p>
           <p>Author email : {{advertisement.authorEmail}}</p>
-          <agm-map [latitude]="lat" [longitude]="lng">
-            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          <p *ngIf="advertisement.address">Address: {{advertisement.address}}</p>
+          <agm-map *ngIf="advertisement.address" [latitude]="advertisement.lat" [longitude]="advertisement.lng" [zoom]="zoom">
+            <agm-marker [latitude]="advertisement.lat" [longitude]="advertisement.lng" [markerClickable]="true"></agm-marker>
           </agm-map>
         </ng-template>
       </ngb-panel>

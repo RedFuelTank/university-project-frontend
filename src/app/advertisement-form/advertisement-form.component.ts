@@ -31,7 +31,6 @@ export class AdvertisementFormComponent implements OnInit {
   lng = 24.664837;
   address: string = "";
   zoom = 12;
-  private geoCoder: Geocoder | undefined;
 
   @ViewChild('search')
   public searchElementRef: ElementRef | undefined;
@@ -49,7 +48,6 @@ export class AdvertisementFormComponent implements OnInit {
   ngOnInit() {
     this.mapsAPILoader.load().then(() => {
       this.setCurrentPosition();
-      this.geoCoder = new google.maps.Geocoder;
 
       // @ts-ignore
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
@@ -60,7 +58,9 @@ export class AdvertisementFormComponent implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-
+          if (place.formatted_address != null) {
+            this.address = place.formatted_address;
+          }
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
           this.zoom = 12;
@@ -78,28 +78,12 @@ export class AdvertisementFormComponent implements OnInit {
     }
   }
 
-  private setCurrentAddress(lat: number, lng: number) {
-    // @ts-ignore
-    this.geoCoder.geocode({ 'location': { lat: lat, lng: lng} }, (results, status) => {
-      if (status === 'OK') {
-        if (results[0]) {
-          this.zoom = 12;
-          this.address = results[0].formatted_address;
-        } else {
-          window.alert('No results found');
-        }
-      } else {
-        window.alert('Geocoder failed due to: ' + status);
-      }
-    });
-  }
-
   public submit() {
     this.advertisement.title = this.myForm.get("title")?.value;
     this.advertisement.description = this.myForm.get("description")?.value;
     this.advertisement.lat = this.lat;
     this.advertisement.lng = this.lng;
-    this.advertisement.address = this.searchElementRef?.nativeElement;
+    this.advertisement.address = this.address;
 
     if (this.isOffer === 1) {
       this.service.postOffer(this.advertisement);
@@ -111,10 +95,7 @@ export class AdvertisementFormComponent implements OnInit {
   }
 
   markerDragEnd($event: any) {
-    console.log($event.coords);
     this.lat = $event.coords.lat;
     this.lng = $event.coords.lng;
-    this.setCurrentAddress(this.lat, this.lng);
-    console.log(this.address)
   }
 }
