@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {AuthorsComponent} from './authors/authors.component';
 import {AdvertisementsComponent} from './advertisements/advertisements.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {HomeComponent} from './home/home.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {AppRoutingModule} from "./app-routing/app-routing.module";
@@ -18,7 +18,8 @@ import {
   RecaptchaSettings,
 } from "ng-recaptcha";
 import {AgmCoreModule} from "@agm/core";
-import { PosterComponent } from './poster/poster.component';
+import {PosterComponent} from './poster/poster.component';
+import {InterceptorService} from "./shared/interceptor.service";
 
 
 @NgModule({
@@ -53,6 +54,11 @@ import { PosterComponent } from './poster/poster.component';
       provide: RECAPTCHA_LANGUAGE,
       useValue: "en",
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent],
   exports: []
