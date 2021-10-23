@@ -2,7 +2,7 @@
     <div *ngIf="advertisement" class="col-12 col-xl-8">
         <figure class="border rounded">
             <h1 class="text-center">{{advertisement.title}}</h1>
-            <h5 class="text-end">Published on {{advertisement.startDate}}</h5>
+            <h5 class="text-end text-muted">Published on {{advertisement.startDate}}</h5>
             <p>{{advertisement.description}}</p>
             <a [href]="getAuthorUrl()" class="link-secondary">{{advertisement.name}}</a>
             <p class="mt-2">Author phone number : {{advertisement.authorPhoneNumber}}</p>
