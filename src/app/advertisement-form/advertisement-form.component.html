@@ -31,6 +31,7 @@
         <label for="address">Enter address</label>
         <input type="text" class="form-control" id="address" (keydown.enter)="$event.preventDefault()"
                placeholder="Search location" autocorrect="off" autocapitalize="off" spellcheck="off" #search>
+        <div id="addressHelp" class="form-text">Leave this field empty if you need request/offer online</div>
       </div>
       <agm-map class="top-buffer-10" [latitude]="advertisement.lat" [longitude]="advertisement.lng" [zoom]="zoom">
         <agm-marker [latitude]="advertisement.lat" [longitude]="advertisement.lng" [markerDraggable]="true"
