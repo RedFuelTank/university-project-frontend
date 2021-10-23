@@ -20,6 +20,8 @@ import {
 import {AgmCoreModule} from "@agm/core";
 import {PosterComponent} from './poster/poster.component';
 import {InterceptorService} from "./shared/interceptor.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule} from "ngx-toastr";
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import {InterceptorService} from "./shared/interceptor.service";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     AppRoutingModule,
     NgbModule,
     HttpClientModule,

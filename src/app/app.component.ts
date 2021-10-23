@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router';
+import {NotificationService} from "./shared/notification.service";
 
 @Component({
   selector: 'app-root',
@@ -10,4 +10,7 @@ import {Router} from '@angular/router';
 
 export class AppComponent {
   title = 'LORDI';
+
+  constructor(private notifyService : NotificationService) { }
+
 }
