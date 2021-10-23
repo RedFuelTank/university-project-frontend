@@ -23,7 +23,7 @@ export class AdvertisementsService {
   }
 
   public getRequest(id: number) {
-    return this.http.get<Advertisement>(AdvertisementsService.REST_API_SERVER + '/offers/' + id);
+    return this.http.get<Advertisement>(AdvertisementsService.REST_API_SERVER + '/requests/' + id);
   }
 
 

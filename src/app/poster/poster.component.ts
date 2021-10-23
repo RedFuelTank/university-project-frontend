@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AdvertisementsService} from "../shared/advertisements.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {Advertisement} from "../shared/advertisement";
 
@@ -13,6 +13,7 @@ export class PosterComponent implements OnInit {
   advertisement: Advertisement | undefined;
   id: number | undefined;
   private subscription: Subscription;
+  zoom = 14;
 
   constructor(private service: AdvertisementsService, private route: ActivatedRoute) {
     this.subscription = route.params.subscribe(params => this.id = params['id']);
@@ -27,7 +28,10 @@ export class PosterComponent implements OnInit {
         this.service.getOffer(this.id).subscribe(ad => this.advertisement = ad);
       }
     })
+  }
 
+  getAuthorUrl(): string {
+    return "/authors/" + this.advertisement?.authorId;
   }
 
 }
