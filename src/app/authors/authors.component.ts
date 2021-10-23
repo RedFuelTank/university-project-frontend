@@ -4,6 +4,7 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {Author} from "../shared/author";
 
+
 @Component({
   selector: 'app-authors',
   templateUrl: './authors.component.html',
@@ -23,5 +24,6 @@ export class AuthorsComponent implements OnInit {
       this.service.getAuthor(this.id).subscribe(author => this.author = author);
     }
   }
+
 
 }

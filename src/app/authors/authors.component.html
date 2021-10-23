@@ -1,1 +1,44 @@
-<p *ngIf="author">authors works! {{author.name}}</p>
+<div class="row d-flex justify-content-center m-t-40">
+  <div *ngIf="author" class="col-xl-6 col-md-12">
+    <div class="card user-card-full">
+      <div class="row m-l-0 m-r-0">
+        <div class="col-sm-4 bg-c-lite-green user-profile">
+          <div class="card-block text-center text-white">
+            <h6 class="f-w-600 m-t-40">{{author.name}} {{author.surname}}</h6>
+            <p>@{{author.username}}</p> <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="card-block">
+            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="m-b-10 f-w-600">Email</p>
+                <h6 class="text-muted f-w-400">{{author.email}}</h6>
+              </div>
+              <div class="col-sm-6">
+                <p class="m-b-10 f-w-600">Phone</p>
+                <h6 class="text-muted f-w-400">{{author.phoneNumber}}</h6>
+              </div>
+            </div>
+            <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Advertisements</h6>
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="m-b-10 f-w-600">Offers</p>
+                <h6 class="text-muted f-w-400">Sam Disuja</h6>
+              </div>
+              <div class="col-sm-6">
+                <p class="m-b-10 f-w-600">Requests</p>
+                <h6 class="text-muted f-w-400">Dinoter husainm</h6>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!author" class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
