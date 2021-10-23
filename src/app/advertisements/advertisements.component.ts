@@ -10,7 +10,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class AdvertisementsComponent implements OnInit {
   public advertisements: Advertisement[] = [];
+  public advertisementsOnPage: Advertisement[] = [];
   currentState: string = "";
+  public currentPage : number = 1;
 
   constructor(private service: AdvertisementsService, private activatedRoute: ActivatedRoute, private route: Router) {
   }
@@ -24,23 +26,28 @@ export class AdvertisementsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadAdvertisements();
+  }
+
+  public loadAdvertisements() {
     this.activatedRoute.url.subscribe((url) => {
       if (url.join("").toString().includes("requests")) {
         this.currentState = "requests";
-        this.loadRequests();
+        this.loadRequests(this.currentPage);
       } else {
         this.currentState = "offers";
-        this.loadOffers();
+        this.loadOffers(this.currentPage);
       }
     })
   }
 
-  public loadOffers() {
+  public loadOffers(page : number) {
     this.service.getOffers().subscribe(advertisement => this.advertisements = advertisement);
+    this.service.getOfferPage(page).subscribe(advertisement => this.advertisementsOnPage = advertisement);
   }
 
-  public loadRequests() {
+  public loadRequests(page : number) {
     this.service.getRequests().subscribe(advertisement => this.advertisements = advertisement);
+    this.service.getRequestPage(page).subscribe(advertisement => this.advertisementsOnPage = advertisement);
   }
-
 }

@@ -26,6 +26,13 @@ export class AdvertisementsService {
     return this.http.get<Advertisement>(AdvertisementsService.REST_API_SERVER + '/requests/' + id);
   }
 
+  public getOfferPage(page: number) {
+    return this.http.get<Advertisement[]>(AdvertisementsService.REST_API_SERVER + "/offers?page=" + page)
+  }
+
+  public getRequestPage(page : number) {
+    return this.http.get<Advertisement[]>(AdvertisementsService.REST_API_SERVER + "/requests?page=" + page)
+  }
 
   public postOffer(advertisement: Advertisement) {
     this.http.post<any>(AdvertisementsService.REST_API_SERVER + '/offers', advertisement).subscribe();

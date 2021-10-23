@@ -2,9 +2,14 @@
     <button type="button" class="btn grad text-dark" (click)="goToAdvertisementFormPage()">Make advertisement</button>
 </div>
 <div class="row top-buffer-20">
-    <div *ngFor="let advertisement of advertisements" class="col-xxl-3 col-lg-6 col-12">
+    <div *ngFor="let advertisement of advertisementsOnPage" class="col-xxl-3 col-lg-6 col-12">
         <figure (click)="getUrl(advertisement)" class="border rounded text-center pointer">
             <h3 class="text-muted top-buffer-10"><u>{{advertisement.title}}</u></h3>
         </figure>
     </div>
+</div>
+<div class="d-flex justify-content-center">
+<ngb-pagination [collectionSize]="advertisements.length" [(page)]="currentPage"
+                [pageSize]="15" [maxSize]="10" (pageChange)="loadAdvertisements()">
+</ngb-pagination>
 </div>
