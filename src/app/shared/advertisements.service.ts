@@ -34,4 +34,12 @@ export class AdvertisementsService {
   public postRequest(advertisement: Advertisement) {
     this.http.post<any>(AdvertisementsService.REST_API_SERVER + '/requests', advertisement).subscribe();
   }
+
+  public getOfferByAuthorId(authorId: number) {
+    return this.http.get<Advertisement[]>(AdvertisementsService.REST_API_SERVER + '/offers/authorId/' + authorId);
+  }
+
+  public getRequestByAuthorId(authorId: number) {
+    return this.http.get<Advertisement[]>(AdvertisementsService.REST_API_SERVER + '/requests/authorId/' + authorId);
+  }
 }

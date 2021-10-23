@@ -25,11 +25,11 @@
             <div class="row">
               <div class="col-sm-6">
                 <p class="m-b-10 f-w-600">Offers</p>
-                <h6 class="text-muted f-w-400">Sam Disuja</h6>
+                <a [href]="getOfferLink(advertisement)" *ngFor="let advertisement of offers" class="text-muted f-w-400">{{advertisement.title}}<br></a>
               </div>
               <div class="col-sm-6">
                 <p class="m-b-10 f-w-600">Requests</p>
-                <h6 class="text-muted f-w-400">Dinoter husainm</h6>
+                <a [href]="getRequestLink(advertisement)" *ngFor="let advertisement of requests" class="text-muted f-w-400">{{advertisement.title}}<br></a>
               </div>
             </div>
 
