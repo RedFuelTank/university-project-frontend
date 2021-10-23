@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthorsService} from "../shared/authors.service";
+import {Subscription} from "rxjs";
+import {ActivatedRoute} from "@angular/router";
+import {Author} from "../shared/author";
 
 @Component({
   selector: 'app-authors',
@@ -7,11 +10,18 @@ import {AuthorsService} from "../shared/authors.service";
   styleUrls: ['./authors.component.css']
 })
 export class AuthorsComponent implements OnInit {
+  author: Author | undefined;
+  id: number | undefined;
+  private subscription: Subscription;
 
-  constructor(private service: AuthorsService) {
+  constructor(private service: AuthorsService, private route: ActivatedRoute) {
+    this.subscription = route.params.subscribe(params => this.id = params['id']);
   }
 
   ngOnInit(): void {
+    if (this.id){
+      this.service.getAuthor(this.id).subscribe(author => this.author = author);
+    }
   }
 
 }

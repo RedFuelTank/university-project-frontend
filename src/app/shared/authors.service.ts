@@ -6,7 +6,12 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class AuthorsService {
-  public authors: Author[] = [];
+  private static REST_API_SERVER = "http://localhost:4200/api";
+
 
   constructor(private http: HttpClient) { }
+
+  public getAuthor(id: number) {
+    return this.http.get<Author>(AuthorsService.REST_API_SERVER + '/users/' + id);
+  }
 }
