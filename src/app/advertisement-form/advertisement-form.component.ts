@@ -30,7 +30,6 @@ export class AdvertisementFormComponent implements OnInit {
   isOffer: number = 0;
 
   zoom = 12;
-  datepicker: NgbDateStruct = {day: 0, month: 0, year: 0};
 
   @ViewChild('search')
   public searchElementRef: ElementRef | undefined;
@@ -81,8 +80,6 @@ export class AdvertisementFormComponent implements OnInit {
   public submit() {
     this.advertisement.title = this.myForm.get("title")?.value;
     this.advertisement.description = this.myForm.get("description")?.value;
-    this.advertisement.expirationDate = this.datepicker.day + "-" + this.datepicker.month + "-" + this.datepicker.year;
-
     if (this.isOffer === 1) {
       this.service.postOffer(this.advertisement);
     } else if (this.isOffer === -1) {
