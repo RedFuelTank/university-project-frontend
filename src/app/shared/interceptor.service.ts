@@ -24,7 +24,7 @@ export class InterceptorService implements HttpInterceptor {
     Observable<HttpEvent<any>> {
     return next.handle(req).pipe(catchError(err => {
       if (err instanceof HttpErrorResponse) {
-        this.notificationService.showDanger(err.message, err.status.toString())
+        this.notificationService.showDanger("Page not found", err.status.toString())
         this.router.navigate(["/home"])
         this.handleError(err);
       }
