@@ -1,25 +1,10 @@
 <div class="row-cols-auto top-buffer-20 text-center">
-  <button type="button" class="btn grad text-dark" (click)="goToAdvertisementFormPage()">Make advertisement</button>
+    <button type="button" class="btn grad text-dark" (click)="goToAdvertisementFormPage()">Make advertisement</button>
 </div>
-
-<div class="row-cols-auto top-buffer-20">
-  <div class="col-8">
-    <ngb-accordion *ngIf="advertisements" [closeOthers]="true">
-      <ngb-panel *ngFor="let advertisement of advertisements; let i = index" id="static-{{i}}"
-                 title="{{advertisement.title}}">
-        <ng-template ngbPanelContent>
-          <p>{{advertisement.description}}</p>
-          <p>Author name : {{advertisement.name}}</p>
-          <p>Author phone number : {{advertisement.authorPhoneNumber}}</p>
-          <p>Author email : {{advertisement.authorEmail}}</p>
-          <p>Published on {{advertisement.startDate}}</p>
-          <p *ngIf="advertisement.expirationDate">Expiration date: {{advertisement.expirationDate}}</p>
-          <p *ngIf="advertisement.address">Address: {{advertisement.address}}</p>
-          <agm-map *ngIf="advertisement.address" [latitude]="advertisement.lat" [longitude]="advertisement.lng" [zoom]="zoom">
-            <agm-marker [latitude]="advertisement.lat" [longitude]="advertisement.lng" [markerClickable]="true"></agm-marker>
-          </agm-map>
-        </ng-template>
-      </ngb-panel>
-    </ngb-accordion>
-  </div>
+<div class="row top-buffer-20">
+    <div *ngFor="let advertisement of advertisements" class="col-xxl-3 col-lg-6 col-12">
+        <figure (click)="getUrl(advertisement)" class="border rounded text-center pointer">
+            <h3 class="text-muted top-buffer-10"><u>{{advertisement.title}}</u></h3>
+        </figure>
+    </div>
 </div>

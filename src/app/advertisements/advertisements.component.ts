@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class AdvertisementsComponent implements OnInit {
   public advertisements: Advertisement[] = [];
-  zoom = 14;
+  currentState: string = "";
 
   constructor(private service: AdvertisementsService, private activatedRoute: ActivatedRoute, private route: Router) {
   }
@@ -19,11 +19,17 @@ export class AdvertisementsComponent implements OnInit {
     this.route.navigate(['/advertisement-form']);
   }
 
+  getUrl(ad: Advertisement) {
+    this.route.navigate(["/" + this.currentState + "/" + ad.id]);
+  }
+
   ngOnInit(): void {
     this.activatedRoute.url.subscribe((url) => {
       if (url.join("").toString().includes("requests")) {
+        this.currentState = "requests";
         this.loadRequests();
       } else {
+        this.currentState = "offers";
         this.loadOffers();
       }
     })
