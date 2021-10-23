@@ -17,7 +17,6 @@ export class InterceptorService implements HttpInterceptor {
   }
 
   handleError(error: HttpErrorResponse) {
-    console.log("lalalalalalalala");
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler):
