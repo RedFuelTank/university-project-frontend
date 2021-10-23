@@ -17,7 +17,6 @@ export class InterceptorService implements HttpInterceptor {
   }
 
   handleError(error: HttpErrorResponse) {
-    //this.notificationService.showDanger(error.message, error.status.toString())
     console.log("lalalalalalalala");
   }
 

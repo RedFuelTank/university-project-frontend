@@ -9,6 +9,6 @@ export class NotificationService {
   constructor(private toastr: ToastrService) { }
 
   showDanger(message: string, title: string){
-    this.toastr.success(message, title)
+    this.toastr.error(message, title)
   }
 }

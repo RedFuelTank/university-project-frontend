@@ -26,7 +26,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
+              "src/logo.ico",
               "src/assets"
             ],
             "styles": [
@@ -43,7 +43,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2000kb",
+                  "maximumWarning": "5000kb",
                   "maximumError": "1mb"
                 },
                 {

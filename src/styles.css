@@ -1,10 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
+
+
 agm-map {
   height: 350px;
 }
-
 
 .grad {
   background: rgb(191, 228, 181);
