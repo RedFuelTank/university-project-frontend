@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Advertisement} from "./advertisement";
 import {HttpClient} from "@angular/common/http";
-import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +17,15 @@ export class AdvertisementsService {
   public getRequests() {
     return this.http.get<Advertisement[]>(AdvertisementsService.REST_API_SERVER + '/requests');
   }
+
+  public getOffer(id: number) {
+    return this.http.get<Advertisement>(AdvertisementsService.REST_API_SERVER + '/offers/' + id);
+  }
+
+  public getRequest(id: number) {
+    return this.http.get<Advertisement>(AdvertisementsService.REST_API_SERVER + '/offers/' + id);
+  }
+
 
   public postOffer(advertisement: Advertisement) {
     this.http.post<any>(AdvertisementsService.REST_API_SERVER + '/offers', advertisement).subscribe();
