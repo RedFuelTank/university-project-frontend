@@ -18,6 +18,7 @@ import {
   RecaptchaSettings,
 } from "ng-recaptcha";
 import {AgmCoreModule} from "@agm/core";
+import { PosterComponent } from './poster/poster.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {AgmCoreModule} from "@agm/core";
     AuthorsComponent,
     AdvertisementsComponent,
     HomeComponent,
-    AdvertisementFormComponent
+    AdvertisementFormComponent,
+    PosterComponent
   ],
   imports: [
     BrowserModule,
