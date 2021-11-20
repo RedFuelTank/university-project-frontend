@@ -7,7 +7,7 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class AuthorsService {
-  private static REST_API_SERVER = "http://localhost:4200/api";
+  private static REST_API_SERVER = "/api";
 
 
   constructor(private http: HttpClient) { }
