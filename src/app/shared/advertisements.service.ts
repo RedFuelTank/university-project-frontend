@@ -6,7 +6,7 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class AdvertisementsService {
-  private static REST_API_SERVER = "http://localhost:4200/api";
+  private static REST_API_SERVER = "http://13.48.43.39:4200/api";
 
   constructor(private http: HttpClient) { }
 
