@@ -1,0 +1,30 @@
+stages:
+  - build
+  - deploy
+
+build lordi:
+  stage: build
+  image: node:12-alpine
+  cache:
+    paths:
+      - node_modules
+  artifacts:
+    paths:
+      - dist
+  tags:
+    - lordi-test
+  script:
+    - npm install
+    - npm run build
+
+deploy lordi:
+  stage: deploy
+  only:
+    refs:
+      - main
+  tags:
+    - lordi-test
+  script:
+    - mkdir -p ~/front-deployment
+    - rm -rf ~/front-deployment/*
+    - cp -r dist/. ~/front-deployment
