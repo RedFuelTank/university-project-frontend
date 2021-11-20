@@ -27,4 +27,4 @@ deploy lordi:
   script:
     - mkdir -p ~/front-deployment
     - rm -rf ~/front-deployment/*
-    - cp -r dist/. ~/front-deployment
+    - cp -r dist/iti0302-lordi-frontend/. ~/front-deployment
