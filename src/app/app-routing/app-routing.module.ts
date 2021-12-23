@@ -6,18 +6,19 @@ import {AdvertisementFormComponent} from "../advertisement-form/advertisement-fo
 import {PosterComponent} from "../poster/poster.component";
 import {AuthorsComponent} from "../authors/authors.component";
 import {LoginComponent} from "../login/login.component";
+import {AuthGuard} from "../auth.guard";
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
-  { path: 'offers', component: AdvertisementsComponent},
-  { path: 'requests', component: AdvertisementsComponent},
+  { path: 'offers', component: AdvertisementsComponent, canActivate: [AuthGuard]},
+  { path: 'requests', component: AdvertisementsComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent},
-  { path: 'offers/:id', component: PosterComponent},
-  { path: 'requests/:id', component: PosterComponent},
-  { path: 'authors/:id', component: AuthorsComponent},
-  {path: 'advertisement-form', component: AdvertisementFormComponent},
+  { path: 'offers/:id', component: PosterComponent, canActivate: [AuthGuard]},
+  { path: 'requests/:id', component: PosterComponent, canActivate: [AuthGuard]},
+  { path: 'authors/:id', component: AuthorsComponent, canActivate: [AuthGuard]},
+  {path: 'advertisement-form', component: AdvertisementFormComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: '/home'}
 ];
 
