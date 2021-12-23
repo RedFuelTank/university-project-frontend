@@ -5,6 +5,7 @@ import {AdvertisementsComponent} from "../advertisements/advertisements.componen
 import {AdvertisementFormComponent} from "../advertisement-form/advertisement-form.component";
 import {PosterComponent} from "../poster/poster.component";
 import {AuthorsComponent} from "../authors/authors.component";
+import {LoginComponent} from "../login/login.component";
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'offers', component: AdvertisementsComponent},
   { path: 'requests', component: AdvertisementsComponent},
+  { path: 'login', component: LoginComponent},
   { path: 'offers/:id', component: PosterComponent},
   { path: 'requests/:id', component: PosterComponent},
   { path: 'authors/:id', component: AuthorsComponent},

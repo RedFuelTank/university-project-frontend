@@ -22,6 +22,9 @@ import {PosterComponent} from './poster/poster.component';
 import {InterceptorService} from "./shared/interceptor.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
+import { LoginComponent } from './login/login.component';
+import {JwtInterceptor} from "./jwt.interceptor";
+import {ErrorInterceptor} from "./error.interceptor";
 
 
 @NgModule({
@@ -31,7 +34,8 @@ import {ToastrModule} from "ngx-toastr";
     AdvertisementsComponent,
     HomeComponent,
     AdvertisementFormComponent,
-    PosterComponent
+    PosterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +65,16 @@ import {ToastrModule} from "ngx-toastr";
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true
     }
   ],
