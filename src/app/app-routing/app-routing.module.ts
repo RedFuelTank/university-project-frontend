@@ -7,6 +7,7 @@ import {PosterComponent} from "../poster/poster.component";
 import {AuthorsComponent} from "../authors/authors.component";
 import {LoginComponent} from "../login/login.component";
 import {AuthGuard} from "../auth.guard";
+import {RegisterComponent} from "../register/register.component";
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'offers', component: AdvertisementsComponent, canActivate: [AuthGuard]},
   { path: 'requests', component: AdvertisementsComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent},
   { path: 'offers/:id', component: PosterComponent, canActivate: [AuthGuard]},
   { path: 'requests/:id', component: PosterComponent, canActivate: [AuthGuard]},
   { path: 'authors/:id', component: AuthorsComponent, canActivate: [AuthGuard]},

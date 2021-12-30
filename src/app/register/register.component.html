@@ -1,0 +1,38 @@
+<h3>Registration</h3>
+
+<form [formGroup]="registerForm">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputUsername4">Username</label>
+      <input type="text" class="form-control" id="inputUsername4" placeholder="Please input your username"
+             formControlName="username">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Password</label>
+      <input type="password" class="form-control" id="inputPassword4" placeholder="Please input your password"
+             formControlName="password">
+    </div>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputAddress">Name</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="Name" formControlName="name">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputAddress2">Surname</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Surname" formControlName="surname">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail">Email</label>
+      <input type="text" class="form-control" id="inputEmail" formControlName="email">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputPhoneNumber">Phone number</label>
+      <input type="text" class="form-control" id="inputPhoneNumber" formControlName="phoneNumber">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="onSubmit()">Sign in</button>
+</form>

@@ -25,6 +25,7 @@ import {ToastrModule} from "ngx-toastr";
 import { LoginComponent } from './login/login.component';
 import {JwtInterceptor} from "./jwt.interceptor";
 import {ErrorInterceptor} from "./error.interceptor";
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {ErrorInterceptor} from "./error.interceptor";
     HomeComponent,
     AdvertisementFormComponent,
     PosterComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
