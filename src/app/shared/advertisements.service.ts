@@ -55,7 +55,6 @@ export class AdvertisementsService {
   }
 
   public deleteRequest(id: number) {
-    console.log("delete")
     return this.http.delete(AdvertisementsService.REST_API_SERVER + '/offers/' + id).subscribe();
   }
 }

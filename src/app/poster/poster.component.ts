@@ -45,11 +45,9 @@ export class PosterComponent implements OnInit {
 
   delete(): void {
     if (window.location.href.includes("requests") && this.id) {
-      console.log("request");
       this.service.deleteRequest(this.id);
       this.router.navigate(["/requests"]).then();
     } else if (window.location.href.includes("offers") && this.id) {
-      console.log("offer");
       this.service.deleteOffer(this.id);
       this.router.navigate(["/offers"]).then();
     }
