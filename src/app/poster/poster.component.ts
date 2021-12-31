@@ -3,6 +3,8 @@ import {AdvertisementsService} from "../shared/advertisements.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {Advertisement} from "../shared/advertisement";
+import {LoginResponse} from "../model/login-response";
+import {AuthenticationService} from "../authentication.service";
 
 @Component({
   selector: 'app-poster',
@@ -15,7 +17,10 @@ export class PosterComponent implements OnInit {
   private subscription: Subscription;
   zoom = 14;
 
-  constructor(private service: AdvertisementsService, private route: ActivatedRoute) {
+  constructor(private service: AdvertisementsService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private authenticationService : AuthenticationService ) {
     this.subscription = route.params.subscribe(params => this.id = params['id']);
   }
 
@@ -34,4 +39,19 @@ export class PosterComponent implements OnInit {
     return "/authors/" + this.advertisement?.authorId;
   }
 
+  public get getCurrentValue(): LoginResponse | undefined {
+    return this.authenticationService.getCurrentUserValue
+  }
+
+  delete(): void {
+    if (window.location.href.includes("requests") && this.id) {
+      console.log("request");
+      this.service.deleteRequest(this.id);
+      this.router.navigate(["/requests"]).then();
+    } else if (window.location.href.includes("offers") && this.id) {
+      console.log("offer");
+      this.service.deleteOffer(this.id);
+      this.router.navigate(["/offers"]).then();
+    }
+  }
 }

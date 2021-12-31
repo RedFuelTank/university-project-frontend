@@ -14,6 +14,9 @@
                 <agm-marker [latitude]="advertisement.lat" [longitude]="advertisement.lng"
                             [markerClickable]="true"></agm-marker>
             </agm-map>
+            <div *ngIf="getCurrentValue && getCurrentValue.role === 'ADMIN'">
+              <button class="btn btn-primary grad-yellow" (click)="delete()">Delete</button>
+            </div>
         </figure>
     </div>
     <div *ngIf="!advertisement" class="spinner-border" role="status">

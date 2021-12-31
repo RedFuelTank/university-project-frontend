@@ -49,4 +49,13 @@ export class AdvertisementsService {
   public getRequestByAuthorId(authorId: number) {
     return this.http.get<Advertisement[]>(AdvertisementsService.REST_API_SERVER + '/requests/authorId/' + authorId);
   }
+
+  public deleteOffer(id: number) {
+    return this.http.delete(AdvertisementsService.REST_API_SERVER + '/offers/' + id).subscribe();
+  }
+
+  public deleteRequest(id: number) {
+    console.log("delete")
+    return this.http.delete(AdvertisementsService.REST_API_SERVER + '/offers/' + id).subscribe();
+  }
 }
