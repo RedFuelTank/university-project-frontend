@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../authentication.service";
-import {LoginRequest} from "../model/login-request";
-import {LoginResponse} from "../model/login-response";
 import {UserService} from "../user.service";
-import {RegisterRequest} from "../register-request";
+import {RegisterRequest} from "../model/register-request";
 
 @Component({
   selector: 'app-register',
@@ -23,6 +21,10 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.authenticationService.getCurrentUserValue) {
+      this.router.navigate(["/home"]).then();
+    }
+
     this.registerForm = this.formBuilder.group({
       username: ["", Validators.required],
       password: ["", Validators.required],
@@ -43,7 +45,7 @@ export class RegisterComponent implements OnInit {
     console.log(registerRequest)
 
     this.userService.register(registerRequest).subscribe((response: any) => {
-      this.router.navigate(["/login"]);
+      this.router.navigate(["/login"]).then();
     })
   }
 }
