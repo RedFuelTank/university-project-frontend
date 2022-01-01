@@ -23,9 +23,12 @@ export class AuthenticationService {
 
     return this.userService.login(loginRequest).
       pipe(map((loginResponse : LoginResponse) => {
-        localStorage.setItem("currentUser", JSON.stringify(loginResponse));
-        this.currentUserSubject.next(loginResponse);
+        if (loginResponse && loginResponse.token) {
+          localStorage.setItem("currentUser", JSON.stringify(loginResponse));
+          this.currentUserSubject.next(loginResponse);
+        }
         return loginResponse;
+
     }))
   }
 
